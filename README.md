@@ -5,7 +5,7 @@ the update with minimal downtime.
 
 ## Usage ##
 
-This is a Python 2 script using a single non-standard library,
+This is a Python 3 script using a single non-standard library,
 [Requests](http://requests.readthedocs.org/en/latest/).
 
 To install the required dependency, you should need do no more than run `pip
@@ -20,7 +20,7 @@ headless server, fetch the updater script, and run it (try it with `--help`
 first!). Here's an example session:
 
 ```
-[narc@odin ~/src/factorio-updater]% python update_factorio.py --help
+[narc@odin ~/src/factorio-updater]% python3 update_factorio.py --help
 usage: update_factorio.py [-h] [-d] [-v] [-l] [-u USER] [-t TOKEN]
                           [-p PACKAGE] [-f FOR_VERSION] [-O OUTPUT_PATH] [-x]
 
@@ -49,10 +49,10 @@ optional arguments:
                         Where to put downloaded files.
   -x, --experimental    Download experimental versions, too (otherwise only
                         stable updates are considered).
-[narc@odin ~/src/factorio-updater]% python update_factorio.py -l
+[narc@odin ~/src/factorio-updater]% python3 update_factorio.py -l
 Available packages:
         core-linux_headless64
-[narc@odin ~/src/factorio-updater]% python update_factorio.py -p core-linux_headless64 -f 0.12.25 -x
+[narc@odin ~/src/factorio-updater]% python3 update_factorio.py -p core-linux_headless64 -f 0.12.25 -x
 Wrote /tmp/core-linux_headless64-0.12.25-0.12.26-update.zip, apply with `factorio --apply-update /tmp/core-linux_headless64-0.12.25-0.12.26-update.zip`
 [narc@odin ~/src/factorio-updater]% cd ~/srv/factorio/bin/x64
 [narc@odin ~/srv/factorio/bin/x64]% ./factorio --apply-update /tmp/core-linux_headless64-0.12.25-0.12.26-update.zip
