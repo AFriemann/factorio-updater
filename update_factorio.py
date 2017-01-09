@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-import os, posixpath, requests, re, urlparse
+import os, posixpath, requests, re, urlparse, json
 import argparse
 
 
@@ -25,6 +25,8 @@ parser.add_argument('-O', '--output-path', default='/tmp',
                     help="Where to put downloaded files.")
 parser.add_argument('-x', '--experimental', action='store_true', dest='experimental',
                     help="Download experimental versions, too (otherwise only stable updates are considered).")
+parser.add_argument('-r', '--root', dest='root',
+                    help="Old installation root.")
 
 
 class DownloadFailed(Exception): pass
@@ -127,6 +129,12 @@ def main():
         for package in j.viewkeys():
             print "\t", package
         return 0
+
+    if not args.for_version and args.root:
+        info_path = os.path.join(args.root, "data/base/info.json")
+        with open(info_path, 'r') as stream:
+            info = json.loads(stream.read())
+        args.for_version = info.get('version')
 
     updates, latest = pick_updates(j, args.package, args.for_version, args.experimental)
 
